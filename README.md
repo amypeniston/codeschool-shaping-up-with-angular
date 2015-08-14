@@ -8,6 +8,10 @@ Source code for the shaping up with angular course run by Codeschool at https://
 
 ## Course Notes
 
+*Notes I took while watching Code School's Shaping Up With Angular.js Course*
+
+---
+
 **Modules**
 
 Where our application components live. They make our code more maintainable, testable and readable. Also where we define dependencies for our app.
