@@ -1,10 +1,13 @@
+//wrap in closure 
 (function(){
+    //declare a new app for the products, name is arbitrary
     var app = angular.module('store-directives', []);
 
+    //create the <product-description></product-description> custom directive
     app.directive("productDescription", function() {
       return {
-        restrict: 'E',
-        templateUrl: "product-description.html"
+        restrict: 'E', //specify type of directive, here Element. Alternatively 'A' for attribute
+        templateUrl: "product-description.html" //specify url of template to load
       };
     });
 
@@ -26,7 +29,7 @@
       return {
         restrict: "E",
         templateUrl: "product-tabs.html",
-        controller: function() {
+        controller: function() { //move the controller functionality inside directive
           this.tab = 1;
 
           this.isSet = function(checkTab) {
@@ -37,7 +40,7 @@
             this.tab = activeTab;
           };
         },
-        controllerAs: "tab"
+        controllerAs: "tab" //set the alias for the controller
       };
     });
 
