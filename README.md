@@ -12,7 +12,7 @@ Source code for the shaping up with angular course run by Codeschool at https://
 
 Where our application components live. They make our code more maintainable, testable and readable. Also where we define dependencies for our app.
 
-It's best to split modules up by functionality. For example, `app.js` includes the top level module which is attached to `<html>` via ng-app, whereas `products.js` includes all of the directives relating to products. Don't forget to link the addition modules via `<script>` tags and to require them as dependencies within the main app module definition. 
+It's best to split modules up by functionality. For example, `app.js` includes the top level module which is attached to `<html>` via ng-app, whereas `products.js` includes all of the directives relating to products. Don't forget to link the additional modules via `<script>` tags and to require them as dependencies within the main app module definition. 
 
 *Creating Modules*
     
@@ -35,7 +35,7 @@ Pipe result of expression 1 into expression 2. Ex: `{{ product.price | currency 
 
 Filters are of the form: `{{ data | filter:options }}`
 
-Other filters available include: date, uppercase, lowercase, limitTo:#, orderBy
+Other available filters include: date, uppercase, lowercase, limitTo:#, orderBy
 
 **Validations**
 
@@ -55,24 +55,32 @@ Give your controllers additional functionality like:
 
 *$http Service*
         
-Using the $http as a function with an options object: `$http({ method: 'GET', url: '/products.json' });`
-        
-or using the shortcut method get: `$http.get('/products.json', { apiKey: 'myApiKey' });` 
+There are two main ways of using the $http service:
+
+    * as a function with an options object: $http({ method: 'GET', url: '/products.json' });
+    * or using the shortcut method get: $http.get('/products.json', { apiKey: 'myApiKey' });
         
 Both methods return a promise with `.success()` and `.error()`.
 
-Bonus: if we tell $http to fetch JSON, the result will automatically be decoded into Javascript objects and arrays.
+As an added bonus, if we tell $http to fetch JSON, the result will automatically be decoded into Javascript objects and arrays.
 
-The syntax for giving a controller a service is weirdly formatted: `app.controller('SomeController', [ '$http', function($http) { }]);` where the first argument in the [] is the service name and the second is a function taking the service name as an argument. This format and technique is called dependency injection. 
+*Assigning a Service to a Controller*
 
-If you needed two services, the syntax would be: `app.controller('SomeController', ['$http', '$log', function($http,$log) { }]);`.
+Syntax: `app.controller('SomeController', [ '$http', function($http) { }]);` 
 
-$http can also post(), put() and delete():
+    * where the first argument in the [ ] is the service name
+    * and the second argument is a function taking the service name as an argument. 
+
+This syntax format and technique is called dependency injection. 
+
+Syntax for two services: `app.controller('SomeController', ['$http', '$log', function($http,$log) { }]);`
+
+`$http` can also `post()`, `put()` and `delete()`:
     
-    * `$http.post('/path/to/resource.json', { param: 'value' });`
-    * `$http.delete('/path/to/resource/json');`
+    * $http.post('/path/to/resource.json', { param: 'value' });
+    * $http.delete('/path/to/resource/json');
 
-The config object can also be used to allow $http to access other methods, for example 'OPTIONS', 'PATCH', 'TRACE'.
+The config object can also be used to allow `$http` to access other methods, for example `'OPTIONS'`, `'PATCH'`, `'TRACE'`.
 
 **Directives**
 
@@ -86,8 +94,8 @@ HTML annotations that trigger javascript behaviors
     * ng-hide: hide if value of expression is true
     * ng-repeat: takes a special expression (in) and iterates through
     * ng-source: used to display images from URL
-        * `<img src="{{product.images[0].full}}"/>` DOES NOT WORK becuase the browser tries to load the image before the expression evaluates.
-        * Instead use: `<img ng-src="{{product.images[0].full}}"/>`
+        * <img src="{{product.images[0].full}}"/> DOES NOT WORK becuase the browser tries to load the image before the expression evaluates.
+        * Instead use: <img ng-src="{{product.images[0].full}}"/>
     * ng-click: can be used to do 2-way data binding, ex: tab clicking
     * ng-init: allows you to initialize values, for example the starting tab value
     * ng-class: specify a class that you want to set if an expression is true, `{ classname:expression }`
